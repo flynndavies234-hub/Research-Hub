@@ -15,6 +15,7 @@
     (data.reminders||[]).forEach((x,i)=>{if(!x.done)add(x.date,x.title||'Reminder','Reminder',{id:x.id,index:i,time:x.time||'',kind:x.kind||'General',notes:x.notes||'',source:'reminders'})});
     (data.missions||[]).forEach((x,i)=>{if(x.target&&x.status!=='Done')add(x.target,x.name,'Mission',{index:i,source:'missions'})});
     (data.goals||[]).forEach((x,i)=>{if(x.target&&(+x.progress||0)<100)add(x.target,x.name,'Goal',{index:i,source:'goals'})});
+    (data.projects||[]).forEach((x,i)=>{if(x.deadline&&x.status!=='Done')add(x.deadline,x.name,'Project',{index:i,source:'projects'})});
     (data.trips||[]).forEach((x,i)=>{if(x.start)add(x.start,'Trip starts: '+x.destination,'Trip',{index:i,source:'trips'});if(x.end)add(x.end,'Trip ends: '+x.destination,'Trip',{index:i,source:'trips'})});
     return out.sort((a,b)=>a.timeMs-b.timeMs||a.title.localeCompare(b.title));
   }
