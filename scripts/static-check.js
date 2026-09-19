@@ -31,6 +31,10 @@ const requiredHtml=[
   'Mistake Book',
   'practiceWeakAreas',
   'schoolStats',
+  'Missions',
+  'missionList',
+  'addMissionTask',
+  'missionProgress',
   'AI Workspace',
   'Projects',
   'Notes & Knowledge',
@@ -51,6 +55,9 @@ for(const s of requiredPreload)if(!preload.includes(s))fail('missing preload API
 if(pkg.version!=='3.0.0')fail('package version is '+pkg.version+' instead of 3.0.0');
 if(pkg.build?.publish?.[0]?.repo!=='Research-Hub')fail('updater repo is not Research-Hub');
 for(const file of ['renderer.js','styles.css','src/**/*.js'])if(!pkg.build?.files?.includes(file))fail('packaged file missing: '+file);
+const schema=fs.readFileSync('src/data/schema.js','utf8');
+for(const x of ['missions','workspaceReports','projects','notes','trips','goals','techBuilds'])if(!schema.includes(x))fail('shared data schema missing: '+x);
+for(const x of ['projectMission','noteMission','tripMission','goalMission','techMission'])if(!html.includes('id="'+x+'"'))fail('mission link selector missing: '+x);
 
 console.log('Static integration audit passed:',{
   ids:ids.length,
