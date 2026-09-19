@@ -12,7 +12,7 @@
     const mission=(data.missions||[])[activeMissionIndex];
     if(mission)ctx.selectedMission={name:clip(mission.name),outcome:clip(mission.outcome,500),status:mission.status||'Active',target:mission.target||'',tasks:take(mission.tasks,12).map(x=>({text:clip(x.text,180),done:!!x.done}))};
     if(view==='missions')ctx.missions=take(data.missions,8).map(x=>({name:clip(x.name),status:x.status,progress:x.progress,target:x.target||'',nextTask:clip((x.tasks||[]).find(t=>!t.done)?.text||'')}));
-    if(view==='projects')ctx.projects=take(data.projects,10).map(x=>({name:clip(x.name),status:x.status,progress:x.progress,category:x.category,missionId:x.missionId||''}));
+    if(view==='projects')ctx.projects=take(data.projects,10).map(x=>({name:clip(x.name),status:x.status,progress:x.progress,computedProgress:(x.tasks||[]).length?Math.round((x.tasks||[]).filter(t=>t.done).length/(x.tasks||[]).length*100):x.progress,category:x.category,deadline:x.deadline||'',missionId:x.missionId||'',nextTask:clip((x.tasks||[]).find(t=>!t.done)?.text||'',160)}));
     if(view==='notes')ctx.notes=take(data.notes,12).map(x=>({title:clip(x.title),tags:take(x.tags,8).map(t=>clip(t,40)),pinned:!!x.pinned}));
     if(view==='travel')ctx.trips=take(data.trips,10).map(x=>({destination:clip(x.destination),start:x.start||'',end:x.end||'',budget:Number(x.budget)||0,missionId:x.missionId||''}));
     if(view==='goals')ctx.goals=take(data.goals,10).map(x=>({name:clip(x.name),target:x.target||'',progress:Number(x.progress)||0,missionId:x.missionId||''}));
