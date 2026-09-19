@@ -26,7 +26,7 @@ test('every renderer q() reference resolves to an HTML element',()=>{
 });
 
 test('shared modules load before renderer',()=>{
-  const modules=['src/data/schema.js','src/data/missions.js','src/data/inbox.js','src/data/calendar.js','src/data/templates.js','src/data/context.js','src/data/search.js'];
+  const modules=['src/data/schema.js','src/data/missions.js','src/data/inbox.js','src/data/calendar.js','src/data/templates.js','src/data/context.js','src/data/search.js','src/data/projects.js','src/data/tech.js','src/data/travel.js'];
   const rendererPos=html.indexOf('src="renderer.js"');
   assert.ok(rendererPos>0);
   for(const module of modules){
