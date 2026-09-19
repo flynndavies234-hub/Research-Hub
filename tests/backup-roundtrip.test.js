@@ -1,5 +1,6 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
+const fs=require('fs');
 const {normalizeData}=require('../src/data/schema');
 
 test('V3 workspace data survives JSON backup round trip',()=>{
