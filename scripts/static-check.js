@@ -11,6 +11,7 @@ if(!html.includes('src="src/data/schema.js"'))fail('index.html does not load sha
 if(!html.includes('src="src/data/missions.js"'))fail('index.html does not load Mission data module');
 if(!html.includes('src="src/data/inbox.js"'))fail('index.html does not load Inbox data module');
 if(!html.includes('src="src/data/calendar.js"'))fail('index.html does not load Calendar data module');
+if(!html.includes('src="src/data/templates.js"'))fail('index.html does not load Templates data module');
 if(!html.includes('src="renderer.js"'))fail('index.html does not load renderer.js');
 if(!html.includes('href="styles.css"'))fail('index.html does not load styles.css');
 
@@ -34,6 +35,9 @@ const requiredHtml=[
   'Mistake Book',
   'practiceWeakAreas',
   'schoolStats',
+  'Starter Templates',
+  'dFavorites',
+  'dToday',
   'Calendar & Reminders',
   'Activity & Recovery',
   'undoDelete',
@@ -69,10 +73,12 @@ const schema=fs.readFileSync('src/data/schema.js','utf8');
 const missions=fs.readFileSync('src/data/missions.js','utf8');
 const inbox=fs.readFileSync('src/data/inbox.js','utf8');
 const calendar=fs.readFileSync('src/data/calendar.js','utf8');
+const templates=fs.readFileSync('src/data/templates.js','utf8');
 for(const x of ['inbox','reminders','activity','missions','workspaceReports','projects','notes','trips','goals','techBuilds'])if(!schema.includes(x))fail('shared data schema missing: '+x);
 for(const x of ['missionProgress','linkedCounts','missionIsComplete'])if(!missions.includes(x))fail('Mission data module missing: '+x);
 if(!inbox.includes('createFromInbox'))fail('Inbox data module missing conversion logic');
 for(const x of ['collectEvents','partitionEvents','dueReminders'])if(!calendar.includes(x))fail('Calendar data module missing: '+x);
+for(const x of ['templates','instantiateTemplate'])if(!templates.includes(x))fail('Templates module missing: '+x);
 for(const x of ['projectMission','noteMission','tripMission','goalMission','techMission'])if(!html.includes('id="'+x+'"'))fail('mission link selector missing: '+x);
 
 console.log('Static integration audit passed:',{
