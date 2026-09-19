@@ -82,3 +82,9 @@ test('profile lock dominates overlays and blocks shortcut surfaces',()=>{
   assert.match(renderer,/function openAssistant\(\)\{if\(appLocked\(\)\)return;/);
   assert.match(renderer,/function openCommandPalette\(\)\{if\(appLocked\(\)\)return;/);
 });
+
+
+test('monthly planner history uses the local desktop month',()=>{
+  assert.doesNotMatch(renderer,/new Date\(\)\.toISOString\(\)\.slice\(0,7\)/);
+  assert.match(renderer,/localDateKey\(\)\.slice\(0,7\)/);
+});
