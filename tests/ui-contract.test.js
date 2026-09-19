@@ -58,3 +58,12 @@ test('sidebar CSS is scoped to #sidebar instead of every aside element',()=>{
   assert.doesNotMatch(css,/(^|})aside\{/);
   assert.match(css,/\.assistantDrawer\{[^}]*left:auto/);
 });
+
+
+test('sidebar navigation scrolls independently from fixed brand header',()=>{
+  const css=fs.readFileSync('styles.css','utf8');
+  assert.match(css,/#sidebar\{[^}]*display:flex[^}]*flex-direction:column/);
+  assert.match(css,/\.brand\{[^}]*flex:0 0 72px/);
+  assert.match(css,/\.nav\{[^}]*overflow-y:auto/);
+  assert.match(css,/\.nav\{[^}]*min-height:0/);
+});
