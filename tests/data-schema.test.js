@@ -28,11 +28,14 @@ test('V2.6-style data is preserved while V3 collections are added',()=>{
   assert.equal(v3.schoolSubject,'Physics');
   assert.equal(v3.budget,300);
   assert.equal(v3.income,2100);
-  for(const key of ['workspaceReports','missions','projects','notes','trips','goals','techBuilds']) assert.deepEqual(v3[key],[]);
+  for(const key of ['workspaceReports','inbox','reminders','activity','missions','projects','notes','trips','goals','techBuilds']) assert.deepEqual(v3[key],[]);
 });
 
 test('V3 collections survive normalization',()=>{
   const source={
+    inbox:[{id:'i1',text:'Idea'}],
+    reminders:[{id:'r1',title:'Reminder'}],
+    activity:[{action:'Created'}],
     missions:[{id:'m1',name:'Build PC'}],
     projects:[{name:'Build'}],
     notes:[{title:'Idea'}],
