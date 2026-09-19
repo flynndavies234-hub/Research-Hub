@@ -6,7 +6,7 @@ V2.6 base commit: `6125c263ccfb23ec132eaa6e685577e3ad821823`
 
 ## Release state
 
-V3 is **not released**. Do not create `v3.0.0` or a `release/v3.0.0` branch until the final latest-head Windows CI build and real-PC acceptance pass are complete.
+V3 is **not released**. Do not create `v3.0.1` or a `release/v3.0.1` branch until the final latest-head Windows CI build and real-PC acceptance pass are complete.
 
 ## Product direction
 
@@ -231,7 +231,7 @@ V3 CI checks:
 5. Test Command Palette, Inbox conversion, Mission tasks/linking, Calendar reminder, Assistant context, Projects tasks, Tech parts and Travel packing/itinerary.
 6. Export a V3 backup and confirm restart persistence.
 7. Fix any acceptance issues.
-8. Only then prepare final `v3.0.0` release.
+8. Only then prepare final `v3.0.1` release.
 
 ## Release rule
 
