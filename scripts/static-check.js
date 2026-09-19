@@ -49,6 +49,8 @@ const requiredHtml=[
   'focusModeBtn',
   'Keyboard shortcuts',
   'V3 Assistant',
+  'closeAssistantBtn',
+  'closeAssistantDrawer',
   'assistantMessages',
   'Starter Templates',
   'dFavorites',
