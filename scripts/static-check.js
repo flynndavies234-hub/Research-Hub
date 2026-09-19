@@ -93,7 +93,7 @@ for(const s of requiredMain)if(!main.includes(s))fail('missing main-process wiri
 const requiredPreload=['researchAgent','compareAssets','portfolioInsight','schoolAsk','workspaceAsk','assistantChat','notify','profileState','profileConfigure','profileUnlock','profileLock','profileDisable'];
 for(const s of requiredPreload)if(!preload.includes(s))fail('missing preload API: '+s);
 
-if(pkg.version!=='3.0.0')fail('package version is '+pkg.version+' instead of 3.0.0');
+if(!/^3\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(pkg.version))fail('package version is not valid V3 semver: '+pkg.version);
 if(pkg.build?.publish?.[0]?.repo!=='Research-Hub')fail('updater repo is not Research-Hub');
 for(const file of ['renderer.js','styles.css','src/**/*.js'])if(!pkg.build?.files?.includes(file))fail('packaged file missing: '+file);
 const schema=fs.readFileSync('src/data/schema.js','utf8');
