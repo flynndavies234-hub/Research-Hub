@@ -86,6 +86,17 @@ Core principle:
 - V2.6 Portfolio, Watchlist, Investment Research, School, Planner, Usage, Backup and Settings data remain readable
 - V3 backup includes both old and new modules
 
+### Missions — core foundation implemented
+- Create outcome-based Missions
+- Mission category / target date / status
+- Mission task lists
+- Task completion drives Mission progress
+- AI plan sends Mission context into AI Workspace
+- Projects, Notes, Trips, Goals and Tech builds can link to a Mission
+- Mission cards summarize linked items
+- Missions appear in global search, Home Continue and Quick Capture
+- V2.6 migration creates an empty Missions collection without affecting old data
+
 ## Planned major V3 phases
 
 ### V3 Home
