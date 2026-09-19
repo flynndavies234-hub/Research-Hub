@@ -29,17 +29,14 @@ jobs:
       - name: Syntax check preload
         run: node --check preload.js
 
-      - name: Extract and syntax check renderer
-        shell: pwsh
-        run: |
-          $html = Get-Content index.html -Raw
-          $m = [regex]::Match($html, '(?s)<script>(.*?)</script>')
-          if (-not $m.Success) { throw 'Renderer script not found' }
-          Set-Content renderer-check.js $m.Groups[1].Value
-          node --check renderer-check.js
+      - name: Syntax check renderer
+        run: node --check renderer.js
 
       - name: Static integration audit
         run: node scripts/static-check.js
+
+      - name: Unit tests
+        run: npm test
 
       - name: Verify release ref matches package version
         shell: pwsh
