@@ -16,6 +16,7 @@ if(!html.includes('src="src/data/context.js"'))fail('index.html does not load As
 if(!html.includes('src="src/data/search.js"'))fail('index.html does not load Universal Search module');
 if(!html.includes('src="src/data/projects.js"'))fail('index.html does not load Projects data module');
 if(!html.includes('src="src/data/tech.js"'))fail('index.html does not load Tech data module');
+if(!html.includes('src="src/data/travel.js"'))fail('index.html does not load Travel data module');
 if(!html.includes('src="renderer.js"'))fail('index.html does not load renderer.js');
 if(!html.includes('href="styles.css"'))fail('index.html does not load styles.css');
 
@@ -67,6 +68,9 @@ const requiredHtml=[
   'toggleProjectTask',
   'Notes & Knowledge',
   'Travel',
+  'travelManageTrip',
+  'addTravelItem',
+  'togglePacking',
   'Goals',
   'Tech Lab',
   'techPartBuild',
@@ -95,6 +99,7 @@ const context=fs.readFileSync('src/data/context.js','utf8');
 const search=fs.readFileSync('src/data/search.js','utf8');
 const projects=fs.readFileSync('src/data/projects.js','utf8');
 const tech=fs.readFileSync('src/data/tech.js','utf8');
+const travel=fs.readFileSync('src/data/travel.js','utf8');
 for(const x of ['inbox','reminders','activity','assistantMessages','missions','workspaceReports','projects','notes','trips','goals','techBuilds'])if(!schema.includes(x))fail('shared data schema missing: '+x);
 for(const x of ['missionProgress','linkedCounts','missionIsComplete'])if(!missions.includes(x))fail('Mission data module missing: '+x);
 if(!inbox.includes('createFromInbox'))fail('Inbox data module missing conversion logic');
@@ -104,6 +109,7 @@ for(const x of ['buildContext','serializeContext'])if(!context.includes(x))fail(
 if(!search.includes('searchAll'))fail('Universal Search module missing searchAll');
 for(const x of ['projectProgress','projectComplete','nextTask'])if(!projects.includes(x))fail('Projects module missing: '+x);
 for(const x of ['partsCost','budgetRemaining','partCount'])if(!tech.includes(x))fail('Tech module missing: '+x);
+for(const x of ['packingProgress','sortedItinerary','packingRemaining'])if(!travel.includes(x))fail('Travel module missing: '+x);
 for(const x of ['projectMission','noteMission','tripMission','goalMission','techMission'])if(!html.includes('id="'+x+'"'))fail('mission link selector missing: '+x);
 
 console.log('Static integration audit passed:',{
