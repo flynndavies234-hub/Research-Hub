@@ -88,3 +88,11 @@ test('monthly planner history uses the local desktop month',()=>{
   assert.doesNotMatch(renderer,/new Date\(\)\.toISOString\(\)\.slice\(0,7\)/);
   assert.match(renderer,/localDateKey\(\)\.slice\(0,7\)/);
 });
+
+
+test('workspace save has quota recovery and Backup shows storage size',()=>{
+  assert.match(html,/id="storageState"/);
+  assert.match(renderer,/function renderStorageState\(\)/);
+  assert.match(renderer,/localStorage\.removeItem\(KEY\+'-auto'\)/);
+  assert.match(renderer,/local storage is full/i);
+});
