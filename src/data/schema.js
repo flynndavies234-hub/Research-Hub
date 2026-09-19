@@ -9,6 +9,7 @@
     x=x&&typeof x==='object'?x:{};
     return {
       workspaceReports:Array.isArray(x.workspaceReports)?x.workspaceReports:[],
+      inbox:Array.isArray(x.inbox)?x.inbox:[],
       missions:Array.isArray(x.missions)?x.missions:[],
       projects:Array.isArray(x.projects)?x.projects:[],
       notes:Array.isArray(x.notes)?x.notes:[],
