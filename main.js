@@ -26,6 +26,17 @@ ipcMain.handle('market-quotes',async(_,x)=>{let symbols=[...new Set((x.symbols||
 ipcMain.handle('market-fx',async(_,x)=>{let from=String(x.from||'').toUpperCase(),to=String(x.to||'EUR').toUpperCase();if(!from||from===to)return {ok:true,from,to,rate:1};let r=await marketRequest('exchange_rate',{symbol:from+'/'+to});let rate=Number(r.data.rate);if(!Number.isFinite(rate)||rate<=0)throw new Error('Could not get '+from+'/'+to+' exchange rate.');return {ok:true,from,to,rate,usage:r.usage}});
 
 
+ipcMain.handle('assistant-chat',(_,x={})=>{requireUnlocked();let question=String(x.question||'').trim();if(!question)throw new Error('Enter a message.');let context=String(x.context||'').slice(0,12000),history=Array.isArray(x.history)?x.history.slice(-12):[];let transcript=history.map(msg=>(msg.role==='assistant'?'Assistant':'User')+': '+String(msg.text||'').slice(0,2500)).join('\n\n');let prompt=`You are the AI Assistant inside AI Research V3, a personal research and planning desktop app. You may be given a compact snapshot of the current app context. Use it when relevant, but do not pretend to know data that is not in the snapshot. The user remains in control of decisions and app actions. For investing topics, provide research, factual analysis and scenario thinking; do not claim to trade or control funds. Keep answers practical and directly useful. When current web research is enabled, distinguish current sourced facts from interpretation.
+
+CURRENT APP CONTEXT:
+${context||'No app context supplied.'}
+
+RECENT CONVERSATION:
+${transcript||'No previous messages.'}
+
+USER:
+${question}`;return aiRequest([{role:'user',content:[{type:'input_text',text:prompt}]}],x.useWeb===true,{reasoning:x.deep?'medium':'low',searchContext:x.useWeb===true?'medium':undefined})});
+
 ipcMain.handle('workspace-ask',(_,x={})=>{let topic=String(x.topic||'').trim(),goal=String(x.goal||'').trim(),category=String(x.category||'General').trim(),depth=String(x.depth||'Normal');if(!topic&&!goal)throw new Error('Enter something to research or work on.');let effort=depth==='Deep'?'high':depth==='Quick'?'low':'medium';let input=[{role:'user',content:[{type:'input_text',text:`You are the general AI Workspace inside AI Research V3. This request is not assumed to be about investing. Category: ${category}. Topic: ${topic||'Not specified'}. Goal: ${goal||'Help me understand and work through this clearly.'}. Produce a practical, evidence-aware response. Separate confirmed facts from assumptions. When web research is enabled, use current reliable sources and include source links. Prefer useful structure: Quick answer; Key information; Options or approaches; Risks / uncertainties; Practical next steps; Sources when applicable. Do not force finance or investing content into unrelated topics.`}]}];return aiRequest(input,x.useWeb!==false,{reasoning:effort,searchContext:x.useWeb!==false?(depth==='Deep'?'high':'medium'):undefined})});
 
 ipcMain.handle('school-ask',(_,x)=>{const a=x.attachment,subject=String(x.subject||'General').trim()||'General';const subjectRules={
