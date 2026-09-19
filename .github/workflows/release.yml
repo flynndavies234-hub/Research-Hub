@@ -5,6 +5,8 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - 'release/v*'
 
 permissions:
   contents: write
@@ -39,14 +41,19 @@ jobs:
       - name: Static integration audit
         run: node scripts/static-check.js
 
-      - name: Verify release tag matches package version
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Verify release ref matches package version
         shell: pwsh
         run: |
           $v = (Get-Content package.json | ConvertFrom-Json).version
-          $expected = "v$v"
           $actual = "${{ github.ref_name }}"
-          if ($actual -ne $expected) { throw "Tag $actual does not match package version $expected" }
+          if ("${{ github.ref }}" -like "refs/tags/*") {
+            $expected = "v$v"
+          } elseif ("${{ github.ref }}" -like "refs/heads/release/*") {
+            $expected = "release/v$v"
+          } else {
+            $expected = $actual
+          }
+          if ($actual -ne $expected) { throw "Release ref $actual does not match expected $expected" }
 
       - name: Install dependencies
         run: npm install
