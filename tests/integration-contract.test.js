@@ -69,3 +69,9 @@ test('Electron window blocks unexpected in-app external navigation',()=>{
   assert.match(main,/setWindowOpenHandler/);
   assert.match(main,/will-navigate/);
 });
+
+
+test('V3 updater prefers stable releases and never downgrades',()=>{
+  assert.match(main,/autoUpdater\.allowPrerelease=false/);
+  assert.match(main,/autoUpdater\.allowDowngrade=false/);
+});
