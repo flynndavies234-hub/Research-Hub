@@ -1,4 +1,4 @@
-name: V2.5 Test Build
+name: V2.6 Test Build
 
 on:
   workflow_dispatch:
@@ -33,7 +33,7 @@ jobs:
       - name: Upload V2.5 test build
         uses: actions/upload-artifact@v4
         with:
-          name: AI-Research-V2.5-Test
+          name: AI-Research-V2.6-Test
           path: |
             dist/*.exe
             dist/*.blockmap
