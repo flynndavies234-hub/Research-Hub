@@ -60,3 +60,12 @@ test('V3 package includes all runtime asset groups',()=>{
     assert.ok(pkg.build?.files?.includes(file),'missing build asset '+file);
   }
 });
+
+
+test('Electron window blocks unexpected in-app external navigation',()=>{
+  assert.match(main,/contextIsolation:true/);
+  assert.match(main,/nodeIntegration:false/);
+  assert.match(main,/sandbox:true/);
+  assert.match(main,/setWindowOpenHandler/);
+  assert.match(main,/will-navigate/);
+});
