@@ -45,3 +45,16 @@ test('core V3 views remain present',()=>{
 test('renderer keeps legacy V2 storage key',()=>{
   assert.match(renderer,/const KEY='aiResearchDesktopV21'/);
 });
+
+
+test('Assistant drawer is not implemented as the navigation aside',()=>{
+  assert.doesNotMatch(html,/<aside[^>]+id="assistantDrawer"/);
+  assert.match(html,/<div[^>]+id="assistantDrawer"/);
+});
+
+test('sidebar CSS is scoped to #sidebar instead of every aside element',()=>{
+  const css=fs.readFileSync('styles.css','utf8');
+  assert.match(css,/#sidebar\{/);
+  assert.doesNotMatch(css,/(^|})aside\{/);
+  assert.match(css,/\.assistantDrawer\{[^}]*left:auto/);
+});
