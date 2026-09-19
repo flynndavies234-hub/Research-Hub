@@ -67,3 +67,9 @@ test('sidebar navigation scrolls independently from fixed brand header',()=>{
   assert.match(css,/\.nav\{[^}]*overflow-y:auto/);
   assert.match(css,/\.nav\{[^}]*min-height:0/);
 });
+
+
+test('daily UI logic uses local desktop date instead of UTC date slicing',()=>{
+  assert.match(renderer,/function|const localDateKey/);
+  assert.doesNotMatch(renderer,/new Date\(\)\.toISOString\(\)\.slice\(0,10\)/);
+});
