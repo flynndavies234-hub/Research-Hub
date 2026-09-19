@@ -1,7 +1,7 @@
 {
   "name": "ai-research",
-  "version": "2.6.0",
-  "description": "AI Research desktop workspace",
+  "version": "3.0.0",
+  "description": "AI Research personal research and life workspace",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
