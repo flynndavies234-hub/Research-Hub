@@ -1,6 +1,6 @@
 {
   "name": "ai-research",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "AI Research desktop workspace",
   "main": "main.js",
   "scripts": {
@@ -43,7 +43,7 @@
       {
         "provider": "github",
         "owner": "flynndavies234-hub",
-        "repo": "AI-Research",
+        "repo": "Research-Hub",
         "releaseType": "release"
       }
     ]
