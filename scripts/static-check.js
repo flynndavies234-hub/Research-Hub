@@ -28,14 +28,22 @@ const requiredHtml=[
   'Practice 2.0',
   'Mistake Book',
   'practiceWeakAreas',
-  'schoolStats'
+  'schoolStats',
+  'AI Workspace',
+  'Projects',
+  'Notes & Knowledge',
+  'Travel',
+  'Goals',
+  'Tech Lab',
+  'lockScreen',
+  'profileStateText'
 ];
 for(const s of requiredHtml)if(!html.includes(s))fail('missing renderer feature: '+s);
 
-const requiredMain=["'research-agent'","'compare-assets'","'portfolio-insight'","'school-ask'","web_search_call.action.sources"];
+const requiredMain=["'research-agent'","'compare-assets'","'portfolio-insight'","'school-ask'","'workspace-ask'","'profile-state'","'profile-configure'","'profile-unlock'","'profile-lock'","'profile-disable'","web_search_call.action.sources","safeStorage.encryptString","crypto.scryptSync"];
 for(const s of requiredMain)if(!main.includes(s))fail('missing main-process wiring: '+s);
 
-const requiredPreload=['researchAgent','compareAssets','portfolioInsight','schoolAsk'];
+const requiredPreload=['researchAgent','compareAssets','portfolioInsight','schoolAsk','workspaceAsk','profileState','profileConfigure','profileUnlock','profileLock','profileDisable'];
 for(const s of requiredPreload)if(!preload.includes(s))fail('missing preload API: '+s);
 
 if(pkg.version!=='3.0.0')fail('package version is '+pkg.version+' instead of 3.0.0');
