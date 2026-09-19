@@ -24,7 +24,8 @@
       "preload.js",
       "package.json",
       "renderer.js",
-      "styles.css"
+      "styles.css",
+      "src/**/*.js"
     ],
     "win": {
       "target": [
