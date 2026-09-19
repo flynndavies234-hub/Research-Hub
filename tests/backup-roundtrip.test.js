@@ -38,3 +38,11 @@ test('backup normalization never imports API keys or profile PIN settings',()=>{
  assert.equal('profilePinHash' in restored,false);
  assert.equal('profilePinSalt' in restored,false);
 });
+
+
+test('backup UI preserves current data before import/reset and uses version-neutral filename',()=>{
+  const renderer=fs.readFileSync('renderer.js','utf8');
+  assert.match(renderer,/AI-Research-V3-backup-'\+localDateKey\(\)/);
+  assert.match(renderer,/Import this backup\? Your current workspace will be preserved/);
+  assert.match(renderer,/Reset all workspace data\? A recovery snapshot/);
+});
