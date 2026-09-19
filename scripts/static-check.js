@@ -8,6 +8,7 @@ const pkg=JSON.parse(fs.readFileSync('package.json','utf8'));
 
 try{new Function(renderer)}catch(e){fail('renderer syntax: '+e.message)}
 if(!html.includes('src="src/data/schema.js"'))fail('index.html does not load shared data schema');
+if(!html.includes('src="src/data/missions.js"'))fail('index.html does not load Mission data module');
 if(!html.includes('src="renderer.js"'))fail('index.html does not load renderer.js');
 if(!html.includes('href="styles.css"'))fail('index.html does not load styles.css');
 
@@ -56,7 +57,9 @@ if(pkg.version!=='3.0.0')fail('package version is '+pkg.version+' instead of 3.0
 if(pkg.build?.publish?.[0]?.repo!=='Research-Hub')fail('updater repo is not Research-Hub');
 for(const file of ['renderer.js','styles.css','src/**/*.js'])if(!pkg.build?.files?.includes(file))fail('packaged file missing: '+file);
 const schema=fs.readFileSync('src/data/schema.js','utf8');
+const missions=fs.readFileSync('src/data/missions.js','utf8');
 for(const x of ['missions','workspaceReports','projects','notes','trips','goals','techBuilds'])if(!schema.includes(x))fail('shared data schema missing: '+x);
+for(const x of ['missionProgress','linkedCounts','missionIsComplete'])if(!missions.includes(x))fail('Mission data module missing: '+x);
 for(const x of ['projectMission','noteMission','tripMission','goalMission','techMission'])if(!html.includes('id="'+x+'"'))fail('mission link selector missing: '+x);
 
 console.log('Static integration audit passed:',{
