@@ -27,7 +27,7 @@
       case 'plan-trip':{
         const place=title||'Plan a trip';
         mission=baseMission(place,'Plan a realistic, enjoyable trip with transport, accommodation, budget and activities decided.','Travel',['Choose dates','Set trip budget','Research transport','Research accommodation','Build itinerary','Create packing checklist'],now);
-        created.trips.push({destination:place.replace(/^Plan (a )?trip (to )?/i,''),missionId:mission.id,start:'',end:'',budget:0,notes:'Trip created from template.',date:now});break;
+        created.trips.push({destination:place.replace(/^Plan (a )?trip (to )?/i,''),missionId:mission.id,start:'',end:'',budget:0,packing:[],itinerary:[],notes:'Trip created from template.',date:now});break;
       }
       case 'build-project':{
         const name=title||'Build a project';
