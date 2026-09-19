@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "dist:win": "electron-builder --win nsis --x64 --publish never",
-    "test": "node --test tests/profile-security.test.js tests/data-schema.test.js tests/missions.test.js tests/inbox.test.js tests/calendar.test.js"
+    "test": "node --test tests/profile-security.test.js tests/data-schema.test.js tests/missions.test.js tests/inbox.test.js tests/calendar.test.js tests/templates.test.js"
   },
   "dependencies": {
     "electron-updater": "^6.6.2"
