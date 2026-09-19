@@ -73,3 +73,12 @@ test('daily UI logic uses local desktop date instead of UTC date slicing',()=>{
   assert.match(renderer,/function|const localDateKey/);
   assert.doesNotMatch(renderer,/new Date\(\)\.toISOString\(\)\.slice\(0,10\)/);
 });
+
+
+test('profile lock dominates overlays and blocks shortcut surfaces',()=>{
+  const css=fs.readFileSync('styles.css','utf8');
+  assert.match(css,/\.lockScreen\{[^}]*z-index:30000/);
+  assert.match(renderer,/function appLocked\(\)/);
+  assert.match(renderer,/function openAssistant\(\)\{if\(appLocked\(\)\)return;/);
+  assert.match(renderer,/function openCommandPalette\(\)\{if\(appLocked\(\)\)return;/);
+});
