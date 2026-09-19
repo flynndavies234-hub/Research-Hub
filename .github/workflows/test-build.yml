@@ -1,10 +1,10 @@
-name: V2.6 Test Build
+name: V3 Test Build
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - 'v2.6-development'
+      - 'v3-development'
 
 permissions:
   contents: read
@@ -36,10 +36,10 @@ jobs:
         run: npm install
       - name: Build Windows test installer
         run: npm run dist:win
-      - name: Upload V2.6 test build
+      - name: Upload V3 test build
         uses: actions/upload-artifact@v4
         with:
-          name: AI-Research-V2.6-Test
+          name: AI-Research-V3-Test
           path: |
             dist/*.exe
             dist/*.blockmap
