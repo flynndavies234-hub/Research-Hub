@@ -38,7 +38,7 @@ for(const s of requiredMain)if(!main.includes(s))fail('missing main-process wiri
 const requiredPreload=['researchAgent','compareAssets','portfolioInsight','schoolAsk'];
 for(const s of requiredPreload)if(!preload.includes(s))fail('missing preload API: '+s);
 
-if(pkg.version!=='2.6.0')fail('package version is '+pkg.version+' instead of 2.6.0');
+if(pkg.version!=='3.0.0')fail('package version is '+pkg.version+' instead of 3.0.0');
 if(pkg.build?.publish?.[0]?.repo!=='Research-Hub')fail('updater repo is not Research-Hub');
 
 console.log('Static integration audit passed:',{
