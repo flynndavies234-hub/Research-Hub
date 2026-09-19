@@ -12,6 +12,7 @@
       inbox:Array.isArray(x.inbox)?x.inbox:[],
       reminders:Array.isArray(x.reminders)?x.reminders:[],
       activity:Array.isArray(x.activity)?x.activity:[],
+      assistantMessages:Array.isArray(x.assistantMessages)?x.assistantMessages:[],
       missions:Array.isArray(x.missions)?x.missions:[],
       projects:Array.isArray(x.projects)?x.projects:[],
       notes:Array.isArray(x.notes)?x.notes:[],
