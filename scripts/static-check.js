@@ -80,11 +80,12 @@ const requiredHtml=[
   'addTechPart',
   'partsCost',
   'lockScreen',
-  'profileStateText'
+  'profileStateText',
+  'lockSecurityText'
 ];
 for(const x of requiredHtml)if(!(html.includes(x)||renderer.includes(x)))fail('missing renderer feature: '+x);
 
-const requiredMain=["'research-agent'","'compare-assets'","'portfolio-insight'","'school-ask'","'workspace-ask'","'assistant-chat'","'profile-state'","'profile-configure'","'profile-unlock'","'profile-lock'","'profile-disable'","'show-notification'","web_search_call.action.sources","safeStorage.encryptString","./src/security/profile","createPinRecord","verifyPin"];
+const requiredMain=["'research-agent'","'compare-assets'","'portfolio-insight'","'school-ask'","'workspace-ask'","'assistant-chat'","'profile-state'","'profile-configure'","'profile-unlock'","'profile-lock'","'profile-disable'","'show-notification'","web_search_call.action.sources","safeStorage.encryptString","Secure operating-system storage is unavailable","./src/security/profile","createPinRecord","verifyPin"];
 for(const s of requiredMain)if(!main.includes(s))fail('missing main-process wiring: '+s);
 
 const requiredPreload=['researchAgent','compareAssets','portfolioInsight','schoolAsk','workspaceAsk','assistantChat','notify','profileState','profileConfigure','profileUnlock','profileLock','profileDisable'];
